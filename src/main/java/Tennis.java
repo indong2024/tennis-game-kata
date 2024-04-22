@@ -1,12 +1,15 @@
+import java.util.HashMap;
+
 public class Tennis {
     private int firstPlayerScoreTimes;
 
     public int score() {
-        if(firstPlayerScoreTimes==1){
-            return 15;
-        }
-        if(firstPlayerScoreTimes==2){
-            return 30;
+        HashMap<Integer, Integer> mapScores = new HashMap<Integer, Integer>() {{
+            put(1, 15);
+            put(2, 30);
+        }};
+        if(firstPlayerScoreTimes > 0){
+            return mapScores.get(firstPlayerScoreTimes);
         }
         return 0;
     }
