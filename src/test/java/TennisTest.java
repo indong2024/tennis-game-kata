@@ -16,6 +16,13 @@ public class TennisTest {
         scoreShouldDisplay(15);
     }
 
+    @Test
+    public void shouldReturnThirty (){
+        tennis.firstPlayerScore();
+        tennis.firstPlayerScore();
+        scoreShouldDisplay(30);
+    }
+
     private void scoreShouldDisplay (int expected) {
         Assert.assertEquals(expected , tennis.score());
     }
