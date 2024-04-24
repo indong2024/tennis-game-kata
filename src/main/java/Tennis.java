@@ -12,18 +12,35 @@ public class Tennis {
     }};
 
     public String score() {
-
         if(isScoreDifferent()){
-            return scoreEvaluator();
+            if (firstPlayerScoreTimes > 3 || secondPlayerScoreTimes > 3) {
+                if (Math.abs(firstPlayerScoreTimes - secondPlayerScoreTimes) == 1){
+                    return displayAdvantage();
+                }
+                return displayGameWinner();
+            }
+           return scoreEvaluator();
         }
-        if(isDeuce()) {
+        else if(isDeuce()) {
             return "Deuce";
         }
-        return sameScoreBetweenPayerAandPlayerB();
+        return scoreEvaluator();
+    }
+
+    private String displayAdvantage() {
+        return "Advantage for " + getAdvanatagePlayer();
+    }
+
+    private String displayGameWinner() {
+        return getAdvanatagePlayer() + " wins the game";
+    }
+
+    private String getAdvanatagePlayer() {
+        return firstPlayerScoreTimes > secondPlayerScoreTimes ? "Player A" : "Player B";
     }
 
     private boolean isDeuce() {
-        return firstPlayerScoreTimes >= 3;
+        return firstPlayerScoreTimes == 3;
     }
 
     private boolean isScoreDifferent() {
@@ -31,10 +48,7 @@ public class Tennis {
     }
 
     private String scoreEvaluator(){
-        return "Player A: " + mapScores.get(firstPlayerScoreTimes) + " / Player B: " + mapScores.get(secondPlayerScoreTimes);
-    }
 
-    private String sameScoreBetweenPayerAandPlayerB(){
         return "Player A: " + mapScores.get(firstPlayerScoreTimes) + " / Player B: " + mapScores.get(secondPlayerScoreTimes);
     }
 

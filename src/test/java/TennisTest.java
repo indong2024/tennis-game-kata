@@ -90,10 +90,42 @@ public class TennisTest {
     @Test
     @DisplayName("Test Deuce")
     public void testShouldReturnDeuce() {
-        shouldDisplayFirstPlayerScores (3);
-        shouldDisplaySecondPlayerScores(3);
+        deuceScores();
         scoreShouldDisplay("Deuce");
     }
+
+    @Test
+    @DisplayName("Test Advantage Player A after deuce")
+    public void ShouldReturnAdvantageA() {
+        deuceScores();
+        shouldDisplayFirstPlayerScores (1);
+        scoreShouldDisplay("Advantage for Player A");
+    }
+
+    @Test
+    @DisplayName("Test Advantage Player B after deuce")
+    public void ShouldReturnAdvantageB() {
+        deuceScores();
+        shouldDisplaySecondPlayerScores (1);
+        scoreShouldDisplay("Advantage for Player B");
+    }
+
+    @Test
+    @DisplayName("Test Player A is the winner")
+    public void ShouldReturnPlayerAWinner() {
+        deuceScores();
+        shouldDisplayFirstPlayerScores (2);
+        scoreShouldDisplay("Player A wins the game");
+    }
+
+    @Test
+    @DisplayName("Test Player B is the winner")
+    public void ShouldReturnPlayerBWinner() {
+        deuceScores();
+        shouldDisplaySecondPlayerScores (2);
+        scoreShouldDisplay("Player B wins the game");
+    }
+
 
     private void scoreShouldDisplay (String expected) {
         Assert.assertEquals(expected , tennis.score());
@@ -108,6 +140,11 @@ public class TennisTest {
         for (int i = 0; i < times; i++){
             tennis.secondPlayerScore();
         }
+    }
+
+    private void deuceScores(){
+        shouldDisplayFirstPlayerScores (3);
+        shouldDisplaySecondPlayerScores(3);
     }
 
 
