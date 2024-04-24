@@ -6,7 +6,7 @@ public class TennisTest {
 
     private final String playeFirstrName = "Player A";
     private final String secondPlayerName = "Player B";
-    Tennis tennis = new Tennis(playeFirstrName, secondPlayerName);
+    TennisScore tennis = new TennisScore(playeFirstrName, secondPlayerName);
 
     @Test
     public void initializationShouldReturnZeroForAll (){

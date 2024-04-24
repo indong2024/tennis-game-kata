@@ -1,5 +1,5 @@
 # tennis-game-kata 2024
-You can find more details about the rules here: ( http://en.wikipedia.org/wiki/Tennis#Scoring ) 
+You can find more details about the rules here: ( http://en.wikipedia.org/wiki/TennisScore#Scoring ) 
 
 # Description
 The scoring system consist in one game, divided by points:

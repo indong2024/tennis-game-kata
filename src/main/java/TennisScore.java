@@ -1,12 +1,12 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Tennis implements TennisInterface {
+public class TennisScore implements TennisInterface {
 
     private int firstPlayerScoreTimes;
     private int secondPlayerScoreTimes;
-    private final String playerFirstName;
-    private final String secondPlayerName;
+    private String playerFirstName;
+    private String secondPlayerName;
     private Map<Integer, String> mapScores = new HashMap<>() {{
         put(0, "0");
         put(1, "15");
@@ -14,20 +14,23 @@ public class Tennis implements TennisInterface {
         put(3, "40");
     }};
 
-    public Tennis(String playerFirstName, String secondPlayerName) {
+    public TennisScore(String playerFirstName, String secondPlayerName) {
         this.playerFirstName = playerFirstName;
         this.secondPlayerName = secondPlayerName;
     }
 
+    public TennisScore() {
+
+    }
 
     public String score() {
         if(isScoreDifferent()){
-            return isAdvanatageOrGameOver() ? evaluateAdvantage() : scoreEvaluator();
+            return isAdvantageOrGameOver() ? evaluateAdvantage() : scoreEvaluator();
         }
-        return isDeuceScore() ? deuceStatus() :scoreEvaluator();
+        return isDeuceScore() ? deuceStatus() : scoreEvaluator();
     }
 
-    private boolean isAdvanatageOrGameOver() {
+    private boolean isAdvantageOrGameOver() {
         return firstPlayerScoreTimes > 3 || secondPlayerScoreTimes > 3;
     }
 
@@ -59,7 +62,7 @@ public class Tennis implements TennisInterface {
     }
 
     private boolean isDeuceScore() {
-        return firstPlayerScoreTimes == 3;
+        return firstPlayerScoreTimes == 3 && secondPlayerScoreTimes == 3;
     }
 
     private boolean isScoreDifferent() {
@@ -67,7 +70,6 @@ public class Tennis implements TennisInterface {
     }
 
     private String scoreEvaluator(){
-
         return playerFirstName +": "+ mapScores.get(firstPlayerScoreTimes) + " / "+  secondPlayerName+": " + mapScores.get(secondPlayerScoreTimes);
     }
 
