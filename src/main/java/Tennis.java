@@ -1,9 +1,12 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Tennis {
+public class Tennis implements TennisInterface {
+
     private int firstPlayerScoreTimes;
     private int secondPlayerScoreTimes;
+    private final String playerFirstName;
+    private final String secondPlayerName;
     private Map<Integer, String> mapScores = new HashMap<>() {{
         put(0, "0");
         put(1, "15");
@@ -11,35 +14,51 @@ public class Tennis {
         put(3, "40");
     }};
 
+    public Tennis(String playerFirstName, String secondPlayerName) {
+        this.playerFirstName = playerFirstName;
+        this.secondPlayerName = secondPlayerName;
+    }
+
+
     public String score() {
         if(isScoreDifferent()){
-            if (firstPlayerScoreTimes > 3 || secondPlayerScoreTimes > 3) {
-                if (Math.abs(firstPlayerScoreTimes - secondPlayerScoreTimes) == 1){
-                    return displayAdvantage();
-                }
-                return displayGameWinner();
-            }
-           return scoreEvaluator();
+            return isAdvanatageOrGameOver() ? evaluateAdvantage() : scoreEvaluator();
         }
-        else if(isDeuce()) {
-            return "Deuce";
+        return isDeuceScore() ? deuceStatus() :scoreEvaluator();
+    }
+
+    private boolean isAdvanatageOrGameOver() {
+        return firstPlayerScoreTimes > 3 || secondPlayerScoreTimes > 3;
+    }
+
+    private String evaluateAdvantage() {
+        if (isAdvantage()){
+            return displayAdvantage();
         }
-        return scoreEvaluator();
+        return displayGameWinner();
+    }
+
+    private boolean isAdvantage() {
+       return Math.abs(firstPlayerScoreTimes - secondPlayerScoreTimes) == 1;
+    }
+
+    private String deuceStatus() {
+        return "Deuce";
     }
 
     private String displayAdvantage() {
-        return "Advantage for " + getAdvanatagePlayer();
+        return "Advantage for " + getAdvantagePlayer();
     }
 
     private String displayGameWinner() {
-        return getAdvanatagePlayer() + " wins the game";
+        return getAdvantagePlayer() + " wins the game";
     }
 
-    private String getAdvanatagePlayer() {
-        return firstPlayerScoreTimes > secondPlayerScoreTimes ? "Player A" : "Player B";
+    private String getAdvantagePlayer() {
+        return firstPlayerScoreTimes > secondPlayerScoreTimes ? playerFirstName : secondPlayerName;
     }
 
-    private boolean isDeuce() {
+    private boolean isDeuceScore() {
         return firstPlayerScoreTimes == 3;
     }
 
@@ -49,7 +68,7 @@ public class Tennis {
 
     private String scoreEvaluator(){
 
-        return "Player A: " + mapScores.get(firstPlayerScoreTimes) + " / Player B: " + mapScores.get(secondPlayerScoreTimes);
+        return playerFirstName +": "+ mapScores.get(firstPlayerScoreTimes) + " / "+  secondPlayerName+": " + mapScores.get(secondPlayerScoreTimes);
     }
 
     public void firstPlayerScore() {

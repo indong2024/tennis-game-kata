@@ -4,55 +4,57 @@ import org.junit.jupiter.api.DisplayName;
 
 public class TennisTest {
 
-    Tennis tennis = new Tennis();
+    private final String playeFirstrName = "Player A";
+    private final String secondPlayerName = "Player B";
+    Tennis tennis = new Tennis(playeFirstrName, secondPlayerName);
 
     @Test
     public void initializationShouldReturnZeroForAll (){
         shouldDisplayFirstPlayerScores (0);
         shouldDisplaySecondPlayerScores(0);
-        scoreShouldDisplay("Player A: 0 / Player B: 0");
+        scoreShouldDisplay(playeFirstrName +": 0 / "+ secondPlayerName +": 0");
     }
 
     @Test
     @DisplayName("Test Player A scores 1 times and B  don't score")
     public void shouldReturnFifteen (){
         shouldDisplayFirstPlayerScores (1);
-        scoreShouldDisplay("Player A: 15 / Player B: 0");
+        scoreShouldDisplay(playeFirstrName +": 15 / "+ secondPlayerName +": 0");
     }
 
     @Test
     @DisplayName("Test Player A scores 2 times and B  don't score")
     public void shouldReturnThirty (){
         shouldDisplayFirstPlayerScores (2);
-        scoreShouldDisplay("Player A: 30 / Player B: 0");
+        scoreShouldDisplay(playeFirstrName +": 30 / "+ secondPlayerName +": 0");
     }
 
     @Test
     @DisplayName("Test Player A scores 3 times and B  don't score")
     public void shouldReturnForty (){
         shouldDisplayFirstPlayerScores (3);
-        scoreShouldDisplay("Player A: 40 / Player B: 0");
+        scoreShouldDisplay(playeFirstrName +": 40 / "+ secondPlayerName +": 0");
     }
 
     @Test
     @DisplayName("Test Player A don't score  and B  1 times")
     public void shouldReturnFifteen2 (){
         shouldDisplaySecondPlayerScores(1);
-        scoreShouldDisplay("Player A: 0 / Player B: 15");
+        scoreShouldDisplay(playeFirstrName + ": 0 / "+ secondPlayerName + ": 15");
     }
 
     @Test
     @DisplayName("Test Player A don't score  and B  2 times")
     public void shouldReturnThirty2 (){
         shouldDisplaySecondPlayerScores(2);
-        scoreShouldDisplay("Player A: 0 / Player B: 30");
+        scoreShouldDisplay(playeFirstrName + ": 0 / "+ secondPlayerName +": 30");
     }
 
     @Test
     @DisplayName("Test Player A don't score  and B  3 times")
     public void shouldReturnForty2 (){
         shouldDisplaySecondPlayerScores (3);
-        scoreShouldDisplay("Player A: 0 / Player B: 40");
+        scoreShouldDisplay(playeFirstrName + ": 0 / "+ secondPlayerName + ": 40");
     }
 
     @Test
@@ -60,7 +62,7 @@ public class TennisTest {
     public void shouldReturnFifteenForBoth (){
         shouldDisplayFirstPlayerScores (1);
         shouldDisplaySecondPlayerScores(1);
-        scoreShouldDisplay("Player A: 15 / Player B: 15");
+        scoreShouldDisplay(playeFirstrName + ": 15 / "+ secondPlayerName + ": 15");
     }
 
     @Test
@@ -68,7 +70,7 @@ public class TennisTest {
     public void shouldReturnThirtyForBoth (){
         shouldDisplayFirstPlayerScores (2);
         shouldDisplaySecondPlayerScores(2);
-        scoreShouldDisplay("Player A: 30 / Player B: 30");
+        scoreShouldDisplay(playeFirstrName + ": 30 / Player B: 30");
     }
 
     @Test
@@ -76,7 +78,7 @@ public class TennisTest {
     public void testPlayerAScores2timesAndPlayerBScores1time() {
         shouldDisplayFirstPlayerScores (2);
         shouldDisplaySecondPlayerScores(1);
-        scoreShouldDisplay("Player A: 30 / Player B: 15");
+        scoreShouldDisplay(playeFirstrName + ": 30 / Player B: 15");
     }
 
     @Test
@@ -84,7 +86,7 @@ public class TennisTest {
     public void testPlayerAScores3timesAndPlayerBScores2time() {
         shouldDisplayFirstPlayerScores (3);
         shouldDisplaySecondPlayerScores(2);
-        scoreShouldDisplay("Player A: 40 / Player B: 30");
+        scoreShouldDisplay(playeFirstrName + ": 40 / Player B: 30");
     }
 
     @Test
